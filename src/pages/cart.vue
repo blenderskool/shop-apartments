@@ -105,8 +105,8 @@ export default {
 
       this.cart.forEach(product => {
         products.push({
-          quantity: product.quantity,
-          price: parseInt(product.price),
+          quantity: parseInt(product.quantity),
+          price: product.price,
           name: product.name,
           image: product.images[0],
           vendorID: product.vendorID,
