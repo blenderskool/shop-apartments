@@ -108,7 +108,7 @@ export default {
        */
       if (!this.product.inStock) return
 
-      this.$store.commit('addToCart', Object.assign({}, this.product, {quantity: 1}))
+      this.$store.commit('addToCart', Object.assign({}, this.product, {quantity: '1'}))
       this.inCart = this.addedToCart = true;
     }
   },

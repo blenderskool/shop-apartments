@@ -13,12 +13,13 @@
           <div class="primary--text price">₹{{ data.price }}</div>
           <div class="secondary--text option">
             Quantity:
-            <v-text-field
+            <v-select
               solo
               flat
               mask="#"
+              color="secondary"
+              :items="['1', '2', '3']"
               class="control"
-              label=""
               v-model="quantity"
               :disabled="locked"
             />
