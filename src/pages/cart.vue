@@ -36,18 +36,17 @@
       button2="Checkout"
       @button1="$router.push('/shop')"
       @button2="$router.push('/cart?confirm=1')"
-      v-if="cart.length"
+      v-if="cart.length && !locked"
+    />
+    <footer-buttons
+      button2="Confirm Order"
+      @button2="confirmOrder"
+      v-else-if="locked && cart.length"
     />
     <footer-buttons
       button1="Back to shop"
       @button1="$router.push('/shop')"
       v-else
-    />
-
-    <footer-buttons
-      button2="Confirm Order"
-      @button2="confirmOrder"
-      v-if="locked && cart.length"
     />
 
     <v-snackbar
