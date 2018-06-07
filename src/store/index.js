@@ -106,6 +106,8 @@ const store = new Vuex.Store({
        */
       const vendorIDs = []
 
+      context.state.products = []
+
       products.forEach(product => {
 
         /**

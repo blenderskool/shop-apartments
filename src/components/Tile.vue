@@ -1,13 +1,24 @@
 <template>
-  <div class="tile" :style="tileStyles(color)" v-ripple>
-    <slot />
-  </div>
+  <!--
+    This component is used to display different product categories. It follows
+    a horizontal tile based system which works well for organizing small amounts
+    of products
+  -->
+  <router-link
+    tag="div"
+    class="tile"
+    :style="tileStyles(color)"
+    v-ripple
+    :to="{ name: 'shop', query: { category: name !== 'all' ? name : undefined }}"
+  >
+    {{ name }}
+  </router-link>
 </template>
 
 <script>
 export default {
   name: 'Tile',
-  props: ['color'],
+  props: ['color', 'name'],
   methods: {
     hexToRgba(hex) {
       /**
@@ -27,10 +38,14 @@ export default {
     },
     tileStyles(color) {
 
+      let category = this.$route.query.category
+      category = category ? category : 'all'
+
       return {
         backgroundColor: color,
         backgroundImage: `linear-gradient(135deg, ${color} 1%, ${this.darkenColor(color)} 100%)`,
-        boxShadow: `0px 5px 30px ${this.hexToRgba(color)}`
+        boxShadow: `0px 5px 30px ${this.hexToRgba(color)}`,
+        opacity: category === this.name ? '0.5' : '1'
       }
     }
   }
@@ -49,12 +64,16 @@ export default {
     color: #ffffff;
     font-weight: 700;
     font-size: 20px;
-    margin: 0 5px;
+    text-transform: capitalize;
+    margin: 0 3px;
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease;
   }
   .tile:active {
     transform: translateY(1px);
+  }
+  .tile:first-child {
+    margin-left: 0;
   }
 </style>

@@ -8,18 +8,26 @@
     </div>
 
     <div class="tiles">
-      <tile color="#70ffb5">
-        Veg
-      </tile>
-      <tile color="#FF665F">
-        Non-veg
-      </tile>
-      <tile color="#96C5FF">
-        Clothing
-      </tile>
-      <tile color="#FF9C76">
-        Items
-      </tile>
+      <tile
+        name="all"
+        color="#778eff"
+      />
+      <tile
+        name="veg"
+        color="#47fd98"
+      />
+      <tile
+        name="non-veg"
+        color="#FF665F"
+      />
+      <tile
+        name="clothing"
+        color="#ffc107"
+      />
+      <tile
+        name="items"
+        color="#ff7e4c"
+      />
     </div>
 
     <catalog />
