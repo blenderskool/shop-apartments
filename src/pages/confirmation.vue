@@ -4,7 +4,7 @@
 
     <info
       title="Order confirmed"
-      description="Vendors would contact you fro further queries."
+      description="Vendors would contact you for further queries."
       button = "Other details"
       @button="$router.push({name: 'order', params: {id: $route.params.id}})"
       type="success"
