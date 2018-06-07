@@ -4,7 +4,7 @@
     to show products by specific category, vendor.
   -->
   <v-layout class="products" row wrap>
-    <v-flex v-for="product in products" :key="product.name" xs6 md2>
+    <v-flex v-for="product in products" :key="product.name" xs6 md2 sm3>
       <product
         @click.native="$router.push(`/product/${product.id}`)"
         :data="product"
