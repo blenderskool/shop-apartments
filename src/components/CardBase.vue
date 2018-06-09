@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
   .card {
-    padding: 20px 20px;
+    padding: 20px;
     margin: 0 20px;
     border-radius: 3px;
     background-color: #ffffff;

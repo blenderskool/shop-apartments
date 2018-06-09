@@ -118,7 +118,8 @@ export default {
       .add({
         userID: this.$store.state.user.uid,
         totalPrice: this.totalPrice,
-        products
+        products,
+        created: new Date()
       })
       .then(orderRef => {
         this.$store.commit('emptyCart')
