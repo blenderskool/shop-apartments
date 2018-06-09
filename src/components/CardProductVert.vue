@@ -93,7 +93,7 @@ export default {
     }
   },
   created() {
-    this.quantity = this.data.quantity
+    this.quantity = String(this.data.quantity)
   },
   watch: {
     quantity() {
