@@ -18,6 +18,10 @@
         Orders
       </div>
 
+      <div class="secondary--text empty-message" v-if="notFound">
+        Orders not found
+      </div>
+
       <router-link
         class="order"
         tag="div"
@@ -26,10 +30,12 @@
         :to="{name: 'order', params: { id: order.id }}"
         v-ripple
       >
+        <!-- Only images of first three products are shown to keep the UI clean -->
         <div class="thumbs">
           <div
             class="image"
             v-for="(product, i) in order.products"
+            v-if="i < 3"
             :key="product.id"
             :style="{
               backgroundImage: `url(${product.image})`,
@@ -67,7 +73,8 @@ export default {
   },
   data() {
     return {
-      orders: []
+      orders: [],
+      notFound: false
     }
   },
   computed: {
@@ -84,7 +91,7 @@ export default {
     firestore.collection('orders')
     .where('userID', '==', this.user.uid).get()
     .then(ordersRef => {
-      if (ordersRef.empty) return
+      if (ordersRef.empty) return this.notFound = true
 
       const orders = []
       ordersRef.docs.forEach(orderRef => {
@@ -98,6 +105,10 @@ export default {
 
       this.orders = orders
 
+    })
+    .catch(err => {
+      this.notFound = true
+      console.log(err)
     })
   }
 }

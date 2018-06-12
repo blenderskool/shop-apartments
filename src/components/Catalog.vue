@@ -11,8 +11,16 @@
         :hideVendor="hideVendor"
       />
     </v-flex>
+    <v-flex class="secondary--text empty-message" v-if="notFound">
+      No products found
+    </v-flex>
 
-    <v-snackbar v-if="loading" bottom value="true">
+    <v-snackbar
+      v-if="loading"
+      bottom
+      value="true"
+      timeout="3500"
+    >
       Loading...
     </v-snackbar>
 
@@ -35,7 +43,8 @@ export default {
   data() {
     return {
       products: [],
-      loading: true
+      loading: true,
+      notFound: false
     }
   },
   watch: {
@@ -51,6 +60,8 @@ export default {
       if (val.name !== 'shop' || oldVal.name !== 'shop') return
 
       this.loading = true
+      this.products = []
+      this.notFound = false
       this.getProducts()
     }
   },
@@ -76,7 +87,7 @@ export default {
                   .where('vendorID', '==', this.vendorID).get())
         })
         .then(products => {
-          if (products.empty) return
+          if (products.empty) return this.notFound = true
 
           const productsData = [];
           products.docs.forEach(product => {
@@ -98,6 +109,7 @@ export default {
           this.loading = false
         })
         .catch(err => {
+          this.notFound = true
           console.log(err)
         })
       }

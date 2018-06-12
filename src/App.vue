@@ -54,6 +54,12 @@ body {
   font-size: 18px !important;
 }
 
+.empty-message {
+  text-align: center;
+  flex: 1;
+  margin-top: 10px;
+}
+
 
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
