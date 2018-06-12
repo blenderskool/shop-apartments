@@ -19,7 +19,7 @@
       v-if="loading"
       bottom
       value="true"
-      timeout="3500"
+      :timeout="3500"
     >
       Loading...
     </v-snackbar>
