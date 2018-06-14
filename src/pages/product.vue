@@ -3,7 +3,7 @@
     <header-nav class="header-nav" :transparent="!notFound" />
     <div v-if="!notFound">
       <div class="image" :style="{backgroundImage: `url(${product.images[0]})`}">
-        <span class="primary white--text price">₹ {{ product.price }}</span>
+        <span class="primary white--text price">₹{{ product.price }}</span>
       </div>
 
       <card class="information">
