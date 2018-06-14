@@ -11,7 +11,10 @@
       v-if="!hideBack"
       @click="$router.go(-1)"
     >
-      <v-icon medium>arrow_back</v-icon>
+      <v-tooltip bottom>
+        <v-icon slot="activator" medium>arrow_back</v-icon>
+        <span>Back</span>
+      </v-tooltip>
     </v-btn>
 
     <v-toolbar-title style="font-weight: 700">
@@ -20,13 +23,31 @@
     
     <v-spacer />
 
-    <v-btn class="cart" icon to="/cart" v-if="!hideSecondary">
-      <v-icon>shopping_cart</v-icon>
-      <div class="error counter">{{ cartItems }}</div>
-    </v-btn>
+    <v-tooltip bottom>
+      <v-btn
+        icon
+        slot="activator"
+        class="cart"
+        to="/cart"
+        v-if="!hideSecondary"
+      >
+        <v-icon>shopping_cart</v-icon>
+        <div class="error counter">{{ cartItems }}</div>
+      </v-btn>
+      <span>Cart</span>
+    </v-tooltip>
 
-    <v-btn icon to="/account" v-if="!hideSecondary">
-      <v-icon>account_circle</v-icon>
+    <!-- Tooltip component is attached to the icon instead of the button so that
+    the margin isn't destroyed -->
+    <v-btn
+      icon
+      to="/account"
+      v-if="!hideSecondary"
+    >
+      <v-tooltip bottom>
+        <v-icon slot="activator">account_circle</v-icon>
+        <span>Account</span>
+      </v-tooltip>
     </v-btn>
 
   </v-toolbar>
