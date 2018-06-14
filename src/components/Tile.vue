@@ -11,6 +11,7 @@
     v-ripple
     :to="{ name: 'shop', query: { category: name !== 'all' ? name : undefined }}"
   >
+    <img :src="image" v-if="image">
     {{ name }}
   </router-link>
 </template>
@@ -19,6 +20,16 @@
 export default {
   name: 'Tile',
   props: ['color', 'name'],
+  computed: {
+    image() {
+      if (this.name === 'veg')
+        return '/static/img/svgs/cat_veg.svg'
+      else if (this.name === 'non-veg')
+        return '/static/img/svgs/cat_nonveg.svg'
+      else if (this.name === 'clothing')
+        return '/static/img/svgs/cat_clothing.svg'
+    }
+  },
   methods: {
     hexToRgba(hex) {
       /**
@@ -59,11 +70,13 @@ export default {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    vertical-align: middle;
+    flex-direction: column;
 
     border-radius: 5px;
     color: #ffffff;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: capitalize;
     margin: 0 3px;
     cursor: pointer;
@@ -75,5 +88,10 @@ export default {
   }
   .tile:first-child {
     margin-left: 0;
+  }
+
+  .tile img {
+    height: 22px;
+    margin-bottom: 5px;
   }
 </style>
