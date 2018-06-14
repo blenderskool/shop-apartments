@@ -33,6 +33,11 @@
 <script>
 import Card from './CardBase'
 
+/** This controls the speed with which the card attains its actual position after
+ * swipe is complete
+ */
+const swipeSpeed = 40
+
 export default {
   name: 'CardProdcutVertical',
   components: {
@@ -61,24 +66,29 @@ export default {
     panComplete(e) {
       if (this.locked) return
 
-      if (e.deltaX < 0) return
+      if (e.deltaX < 0) return this.delX = 0;
 
       if (e.distance < 230) {
         const interval = setInterval(() => {
-          this.delX -= 3;
-          if (this.delX < 0)
+          if (this.delX-swipeSpeed < 0) {
+            this.delX = 0
+          }
+          else
+            this.delX -= swipeSpeed
+
+          if (this.delX <= 0)
             clearInterval(interval)
-        }, 0);
+        }, 0)
       }
       else {
         const interval = setInterval(() => {
-          this.delX += 4;
+          this.delX += swipeSpeed
           if (this.delX > 500) {
             clearInterval(interval)
             this.$store.commit('removeFromCart', this.data.id)
             this.$emit('removed')
           }
-        }, 0);
+        }, 0)
       }
     },
     openProduct() {
